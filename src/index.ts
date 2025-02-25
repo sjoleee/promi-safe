@@ -6,7 +6,7 @@ interface Options {
 }
 
 export type SafePromise<T> = Promise<T> & {
-  safe: (schema: StandardSchemaV1<T>, options?: Options) => Promise<T>;
+  safe: (schema: StandardSchemaV1, options?: Options) => Promise<T>;
 };
 
 export class ValidationError extends Error {
@@ -21,7 +21,7 @@ export class ValidationError extends Error {
 
 export const validateResponse =
   <T>(promise: Promise<T>) =>
-  async (schema: StandardSchemaV1<T>, options?: Options) => {
+  async (schema: StandardSchemaV1, options?: Options) => {
     const response = await promise;
     const result = schema["~standard"]["validate"](response);
     const awaitedResult = await Promise.resolve(result);
@@ -43,6 +43,6 @@ export const validateResponse =
 
 export const makeSafePromise = <T>(promise: Promise<T>): SafePromise<T> =>
   Object.assign(promise, {
-    safe: (schema: StandardSchemaV1<T>, options?: Options) =>
+    safe: (schema: StandardSchemaV1, options?: Options) =>
       validateResponse(promise)(schema, options),
   });

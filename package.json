@@ -1,15 +1,18 @@
 {
   "name": "promi-safe",
-  "version": "0.0.0-canary",
+  "version": "0.0.1-rc",
   "description": "Type-safe promise wrapper with runtime validation support",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "require": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
     }
   },
   "files": [
