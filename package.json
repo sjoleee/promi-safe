@@ -2,7 +2,6 @@
   "name": "promi-safe",
   "version": "0.0.0-canary",
   "description": "Type-safe promise wrapper with runtime validation support",
-  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
