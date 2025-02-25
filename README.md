@@ -41,11 +41,11 @@ const response = promiseWithSafe.safe(schema);
 httpClient를 추상화하는 경우, 더 편리하게 사용할 수 있습니다.
 
 ```ts
-import { makeSafePromise } from "promi-safe";
+import { type SafePromise, makeSafePromise } from "promi-safe";
 
 export const createHttpClient = (): HttpClient => {
   return {
-    get: <T>(url: string, options?: RequestOptions) =>
+    get: <T>(url: string, options?: RequestOptions): SafePromise<T> =>
       makeSafePromise(request<T>("GET", url, undefined, options)),
     ...
   };
